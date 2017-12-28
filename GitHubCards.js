@@ -1,10 +1,11 @@
 const Card = (props) => {
     return (
         <div>
-            <img width="75" src={props.avatarUrl} />
+            <img width="75" src={props.avatar_url} />
             <div style={{ display: 'inline-block', marginLeft: 10 }}>
                 <div>{props.name}</div>
                 <div>{props.company}</div>
+                <div>{props.bio}</div>
             </div>
         </div>
     );
@@ -26,7 +27,7 @@ class Form extends React.Component {
         console.log('Event form submit', this.state.userName);
         axios.get(`https://api.github.com/users/${this.state.userName}`)
             .then(res => {
-                console.log(res);
+                this.props.onSubmit(res.data);
             })
     }
 
@@ -45,29 +46,19 @@ class Form extends React.Component {
 
 class App extends React.Component {
     state = {
-        cards: [
-            {
-                name: "Barret J. Nobel",
-                avatarUrl: "https://avatars3.githubusercontent.com/u/5667044?v=4",
-                company: "Canon USA"
-            },
-            {
-                name: "Barret J. Nobel2",
-                avatarUrl: "https://avatars3.githubusercontent.com/u/5667044?v=4",
-                company: "Canon USA2"
-            },
-            {
-                name: "Barret J. Nobel3",
-                avatarUrl: "https://avatars3.githubusercontent.com/u/5667044?v=4",
-                company: "Canon USA3"
-            },
-        ]
+        cards: []
     };
+
+    addNewCard = (cardInfo) => {
+        this.setState(prevState => ({
+            cards: prevState.cards.concat(cardInfo)
+        }));
+    }
 
     render() {
         return (
             <div>
-                <Form />
+                <Form onSubmit={this.addNewCard} />
                 <CardList cards={this.state.cards} />
             </div>
         );
