@@ -24,6 +24,10 @@ class Form extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         console.log('Event form submit', this.state.userName);
+        axios.get(`https://api.github.com/users/${this.state.userName}`)
+            .then(res => {
+                console.log(res);
+            })
     }
 
     render() {
