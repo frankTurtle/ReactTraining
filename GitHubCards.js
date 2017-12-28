@@ -10,24 +10,6 @@ const Card = (props) => {
     );
 };
 
-let data = [
-    {
-        name: "Barret J. Nobel",
-        avatarUrl: "https://avatars3.githubusercontent.com/u/5667044?v=4",
-        company: "Canon USA"
-    },
-    {
-        name: "Barret J. Nobel2",
-        avatarUrl: "https://avatars3.githubusercontent.com/u/5667044?v=4",
-        company: "Canon USA2"
-    },
-    {
-        name: "Barret J. Nobel3",
-        avatarUrl: "https://avatars3.githubusercontent.com/u/5667044?v=4",
-        company: "Canon USA3"
-    },
-]
-
 const CardList = (props) => {
     return (
         <div>
@@ -36,4 +18,46 @@ const CardList = (props) => {
     );
 }
 
-ReactDOM.render(<CardList cards={data}/>, mountNode);
+class Form extends React.Component {
+    render() {
+        return (
+            <form>
+                <input type="text" placeholder="Github Username" />
+                <button>Add Card</button>
+            </form>
+        );
+    }
+}
+
+class App extends React.Component {
+    state = {
+        cards: [
+            {
+                name: "Barret J. Nobel",
+                avatarUrl: "https://avatars3.githubusercontent.com/u/5667044?v=4",
+                company: "Canon USA"
+            },
+            {
+                name: "Barret J. Nobel2",
+                avatarUrl: "https://avatars3.githubusercontent.com/u/5667044?v=4",
+                company: "Canon USA2"
+            },
+            {
+                name: "Barret J. Nobel3",
+                avatarUrl: "https://avatars3.githubusercontent.com/u/5667044?v=4",
+                company: "Canon USA3"
+            },
+        ]
+    };
+
+    render() {
+        return (
+            <div>
+                <Form />
+                <CardList cards={this.state.cards} />
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(<App />, mountNode);
