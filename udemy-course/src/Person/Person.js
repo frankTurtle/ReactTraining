@@ -1,8 +1,8 @@
 import React from 'react';
 
-const person = () => {
+const person = (props) => {
     return (
-        <p>Person!</p>
+        <p>{props.name}</p>
     )
 };
 
