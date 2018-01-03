@@ -11,11 +11,15 @@ class App extends Component {
     ]
   }
 
+  swithNameHandler = () => {
+    console.log('clicked');
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Hi, I'm a react app! WOO</h1>
-        <button>Name Switch</button>
+        <button onClick={this.swithNameHandler}>Name Switch</button>
         <Person name={this.state.persons[0].name} />
         <Person name={this.state.persons[1].name} />
         <Person name={this.state.persons[2].name}>Hobbies: racing!</Person>
