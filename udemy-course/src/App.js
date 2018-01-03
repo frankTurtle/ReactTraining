@@ -12,12 +12,21 @@ class App extends Component {
   }
 
   swithNameHandler = () => {
-    // console.log('clicked');
     this.setState({
       persons: [
         { name: 'frank' },
         { name: 'isaac' },
         { name: 'toby' },
+      ]
+    });
+  }
+
+  nameChangedHandler = (event) => {
+    this.setState({
+      persons: [
+        { name: 'asdf' },
+        { name: event.target.value },
+        { name: 'zxcv' },
       ]
     });
   }
@@ -31,7 +40,11 @@ class App extends Component {
           name={this.state.persons[0].name}
           click={this.swithNameHandler}
          />
-        <Person name={this.state.persons[1].name} />
+
+        <Person 
+          name={this.state.persons[1].name}
+          changed={this.nameChangedHandler}
+        />
         <Person name={this.state.persons[2].name}>Hobbies: racing!</Person>
       </div>
     );
