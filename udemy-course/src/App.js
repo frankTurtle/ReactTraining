@@ -12,13 +12,11 @@ class App extends Component {
     showPersons: false
   }
 
-  swithNameHandler = () => {
+  deletePerson = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
     this.setState({
-      persons: [
-        { name: 'frank' },
-        { name: 'isaac' },
-        { name: 'toby' },
-      ]
+      persons: persons
     });
   }
 
@@ -52,10 +50,10 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map(person => {
+          {this.state.persons.map((person, index) => {
             return <Person
               name={person.name}
-              click={this.swithNameHandler}
+              click={() => this.deletePerson(index)}
             />
           })}
         </div>
