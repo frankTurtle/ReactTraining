@@ -8,7 +8,8 @@ class App extends Component {
       { name: 'toby' },
       { name: 'frank' },
       { name: 'isaac' },
-    ]
+    ],
+    showPersons: false
   }
 
   swithNameHandler = () => {
@@ -31,6 +32,12 @@ class App extends Component {
     });
   }
 
+  togglePersonsHandler = () => {
+    this.setState({
+      showPersons: !this.state.showPersons
+    });
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -46,19 +53,27 @@ class App extends Component {
 
         <button
           style={style}
-          onClick={this.swithNameHandler}
+          onClick={this.togglePersonsHandler}
         >Name Switch</button>
 
-        <Person
-          name={this.state.persons[0].name}
-          click={this.swithNameHandler}
-        />
+        {
+          this.state.showPersons ?
+            <div>
+              <Person
+                name={this.state.persons[0].name}
+                click={this.swithNameHandler}
+              />
 
-        <Person
-          name={this.state.persons[1].name}
-          changed={this.nameChangedHandler}
-        />
-        <Person name={this.state.persons[2].name}>Hobbies: racing!</Person>
+              <Person
+                name={this.state.persons[1].name}
+                changed={this.nameChangedHandler}
+              />
+
+              <Person name={this.state.persons[2].name}>Hobbies: racing!</Person>
+            </div>
+            : null
+        }
+
       </div>
     );
   }
