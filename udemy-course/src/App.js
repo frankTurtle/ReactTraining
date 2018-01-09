@@ -52,17 +52,12 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          <Person
-            name={this.state.persons[0].name}
-            click={this.swithNameHandler}
-          />
-
-          <Person
-            name={this.state.persons[1].name}
-            changed={this.nameChangedHandler}
-          />
-
-          <Person name={this.state.persons[2].name}>Hobbies: racing!</Person>
+          {this.state.persons.map(person => {
+            return <Person
+              name={person.name}
+              click={this.swithNameHandler}
+            />
+          })}
         </div>
       );
     }
