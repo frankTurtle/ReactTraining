@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from './Person/Person';
+import Persons from './Persons/Persons';
+import Cockpit from './Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -37,51 +38,27 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
+
 
     let persons = null;
 
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return <Person
-              name={person.name}
-              click={() => this.deletePerson(index)}
-              key={person.id}
-            />
-          })}
+          <Persons
+            persons={this.state.persons}
+            click={this.deletePerson}
+          />
         </div>
       );
-
-      style.backgroundColor = 'red';
-    }
-
-    let assignedClasses = [];
-
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red);
-    }
-
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold);
     }
 
     return (
       <div className={classes.App}>
-        <h1>Hi, I'm a react app! WOO</h1>
-        <p className={assignedClasses.join(' ')}>I'm so cool now</p>
-
-        <button
-          style={style}
-          onClick={this.togglePersonsHandler}
-        >Name Switch</button>
+        <Cockpit
+          persons={this.state.persons}
+          buttonClick={this.togglePersonsHandler}
+        />
         {persons}
       </div>
     );
